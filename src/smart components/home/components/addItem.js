@@ -46,12 +46,14 @@ export default function AddItem() {
           class="btn btn-outline-secondary"
           type="button"
           aria-roledescription="submit"
-
         >
           הוסף לעגלה
         </Button>
       </div>
-      <CategoriesList changeCategoryHandler={setchosenCategory} />
+      <CategoriesList
+        changeCategoryHandler={setchosenCategory}
+        chosenCategory={chosenCategory}
+      />
     </div>
   );
 }
