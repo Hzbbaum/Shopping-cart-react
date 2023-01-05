@@ -11,7 +11,9 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://shoppingcartapi20230104113010.azurewebsites.net/api/CategoryItems"
+      // "https://shoppingcartapi20230104113010.azurewebsites.net/api/CategoryItems"
+      "/api/CategoryItems"
+
     )
       .then((hm) => {
         console.log(hm);
