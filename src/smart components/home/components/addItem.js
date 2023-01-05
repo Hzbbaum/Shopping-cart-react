@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCategory as addCategoryToStore, addItemToCategory as addItemToCategoryInStore } from "../../listSlice";
+import { addItemToCategory as addItemToCategoryInStore } from "../../listSlice";
 import CategoriesList from "./categoriesList";
 
 export default function AddItem() {

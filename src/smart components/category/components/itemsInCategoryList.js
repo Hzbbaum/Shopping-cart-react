@@ -1,18 +1,14 @@
 import React from "react";
-import { isObject } from "../../../Helper/helper";
 
 export default function ItemsInCategoryList(props) {
-
-  const listItems = isObject(props.items)
-    ? Object.keys(props.items.keys).map((key) => (
-        <li key={key}>
-          <h4>{key}</h4>:props.items[key]
-        </li>
-      ))
-    : "";
+  const listItems = props.items.map((item) => (
+    <li key={item.name}>
+      {item.name}:{item.count}
+    </li>
+  ));
   return (
     <div>
-      <h3>{props.name}</h3>
+      <h2>{props.name}</h2>
       <ul>{listItems}</ul>
     </div>
   );
