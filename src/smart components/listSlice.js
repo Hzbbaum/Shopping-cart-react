@@ -30,8 +30,7 @@ export const listSlice = createSlice({
           }
         );
         if (itemIndex === -1) {
-          const newItem = { name: itemName, count: 1 };
-          state.value[catIndex].items = [...state.value[catIndex].items, { newItem }];
+          state.value[catIndex].items = [...state.value[catIndex].items, { name: itemName, count: 1 }];
         } else {
           state.value[catIndex].items[itemIndex].count += 1;
         }
