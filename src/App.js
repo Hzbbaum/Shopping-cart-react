@@ -1,10 +1,8 @@
 import './App.css';
-import { useState } from 'react';
 import Header from './plain components/header/header'
 import TotalCount from './smart components/totalcount'
 
 function App() {
-  const [activeCategory, setActiveCategory] =useState('');
   return (
     <div className="App">
       <Header></Header>
