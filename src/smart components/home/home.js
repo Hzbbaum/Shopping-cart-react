@@ -5,7 +5,7 @@ import { selectListCount } from "../listSlice";
 import AddItem from "./components/addItem";
 
 export default function Home() {
-  const count = useSelector(selectListCount);
+  const count = useSelector(selectListCount)
   return (
     <div>
       <TotalCount itemsCount={count} />

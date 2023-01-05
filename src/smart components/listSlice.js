@@ -30,7 +30,10 @@ export const listSlice = createSlice({
           }
         );
         if (itemIndex === -1) {
-          state.value[catIndex].items = [...state.value[catIndex].items, { name: itemName, count: 1 }];
+          state.value[catIndex].items = [
+            ...state.value[catIndex].items,
+            { name: itemName, count: 1 },
+          ];
         } else {
           state.value[catIndex].items[itemIndex].count += 1;
         }
@@ -56,10 +59,8 @@ export const { addItemToCategory, addCategory } = listSlice.actions;
 export const selectList = (state) => state.list.value;
 export const selectListCount = (state) => {
   return state.list.value.reduce(
-    (sum, category) =>
-      (sum =
-        sum +
-        category.items.reduce((innerSum, item) => (innerSum += item.count), 0)),
+    (sum, cat) =>
+      sum + cat.items.reduce((itemsum, item) => itemsum + item.count, 0),
     0
   );
 };
