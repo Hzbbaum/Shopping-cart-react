@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import CategoriesList from "./categoriesList";
 
-export default function addItem() {
+export default function AddItem() {
   return (
-    <div>addItem</div>
-  )
+    <div>
+      <input></input>
+      <CategoriesList />
+    </div>
+  );
 }

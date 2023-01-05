@@ -1,11 +1,15 @@
-import React from 'react'
-import TotalCount from './totalcount'
-import { useSelector } from 'react-redux'
-import { selectListCount } from '../listSlice'
+import React from "react";
+import TotalCount from "./components/totalcount";
+import { useSelector } from "react-redux";
+import { selectListCount } from "../listSlice";
+import AddItem from "./components/addItem";
 
 export default function Home() {
-    const count = useSelector(selectListCount)
+  const count = useSelector(selectListCount);
   return (
-    <TotalCount itemsCount={count}/>
-  )
+    <div>
+      <TotalCount itemsCount={count} />
+      <AddItem />
+    </div>
+  );
 }

@@ -2,26 +2,32 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const listSlice = createSlice({
   name: "list",
-  initialState: {
-  },
+  initialState: {},
   reducers: {
     addItemToCategory: (state, action) => {
-      const {categoryName, itemName} = action.payload
+      const { categoryName, itemName } = action.payload;
       if (state.items[categoryName]) {
         if (state.items[categoryName][itemName]) {
-          state.items[categoryName][itemName] =
-            Number(state.value[categoryName][itemName]) + 1;
+          let newItem = {};
+          newItem[itemName] = Number(state.value[categoryName][itemName]) + 1;
+          state = { ...state, ...{ ...state[categoryName], ...newItem } };
         } else {
-          state.items[categoryName][itemName] = 1;
+          let newItem = {};
+          newItem[itemName] = 1;
+          state = { ...state, ...{ ...state[categoryName], ...newItem } };
         }
       } else {
-        state.items[categoryName] = {};
-        state.items[categoryName][itemName] = 1;
+        let newItem = {};
+        newItem[categoryName] = {};
+        newItem[categoryName][itemName] = 1;
+        state = { ...state, ...newItem };
       }
     },
     addCategory: (state, action) => {
       if (!state[action.payload]) {
-        state[action.payload] = {};
+        let newItem = {};
+        newItem[action.payload] = {};
+        state = { ...state, ...newItem };
       }
     },
   },

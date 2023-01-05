@@ -1,9 +1,8 @@
 import React from "react";
+import { isObject } from "../../../Helper/helper";
 
 export default function ItemsInCategoryList(props) {
-  const isObject = obj => {
-    return Object.prototype.toString.call(obj) === '[object Object]'
-  }
+
   const listItems = isObject(props.items)
     ? Object.keys(props.items.keys).map((key) => (
         <li key={key}>
