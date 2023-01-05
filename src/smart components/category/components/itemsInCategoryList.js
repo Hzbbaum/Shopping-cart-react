@@ -1,15 +1,16 @@
 import React from "react";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 export default function ItemsInCategoryList(props) {
   const listItems = props.items.map((item) => (
-    <li key={item.name}>
+    <ListGroupItem key={item.name}>
       {item.name}:{item.count}
-    </li>
+    </ListGroupItem>
   ));
   return (
-    <div>
+    <div className="col-4 col-md-6 col-sm-12">
       <h2>{props.name}</h2>
-      <ul>{listItems}</ul>
+      <ListGroup>{listItems}</ListGroup>
     </div>
   );
 }

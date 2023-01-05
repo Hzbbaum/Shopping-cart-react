@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItemToCategory as addItemToCategoryInStore } from "../../listSlice";
 import CategoriesList from "./categoriesList";
+import { Button, FormControl } from "react-bootstrap";
 
 export default function AddItem() {
   const dispatch = useDispatch();
@@ -31,14 +32,14 @@ export default function AddItem() {
   return (
     <div>
       <div>current category is: {chosenCategory}</div>
-      <input value={itemName} onChange={handleChange}></input>
+      <FormControl value={itemName} onChange={handleChange}></FormControl>
       {/* <button onClick={addCategory}>submit</button> */}
-      <button
+      <Button
         onClick={addItemToCategory}
         disabled={chosenCategory === null || itemName === ""}
       >
         submit
-      </button>
+      </Button>
       <CategoriesList changeCategoryHandler={setchosenCategory} />
     </div>
   );
