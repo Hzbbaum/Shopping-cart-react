@@ -1,33 +1,52 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
+/**
+ * the data structure of the store is:
+ * state:{
+ * catagories:[{name:string, items:[{name: string, count: number}]}]}
+ */
 export const listSlice = createSlice({
   name: "list",
-  initialState: {},
+  initialState: {
+    value: [],
+  },
   reducers: {
+    // expects {categoryName: string, itemName:string}
     addItemToCategory: (state, action) => {
       const { categoryName, itemName } = action.payload;
-      if (state.items[categoryName]) {
-        if (state.items[categoryName][itemName]) {
-          let newItem = {};
-          newItem[itemName] = Number(state.value[categoryName][itemName]) + 1;
-          state = { ...state, ...{ ...state[categoryName], ...newItem } };
-        } else {
-          let newItem = {};
-          newItem[itemName] = 1;
-          state = { ...state, ...{ ...state[categoryName], ...newItem } };
-        }
+
+      const catIndex = current(state.value).findIndex((category) => {
+        return category.name === categoryName;
+      });
+      if (catIndex === -1) {
+        const newItem = { name: itemName, count: 1 };
+        let newCat = { items: [{ newItem }] };
+        newItem.name = action.payload;
+        state.value = [...state.value, newCat];
       } else {
-        let newItem = {};
-        newItem[categoryName] = {};
-        newItem[categoryName][itemName] = 1;
-        state = { ...state, ...newItem };
+        const itemIndex = current(state.value[catIndex].items).findIndex(
+          (item) => {
+            return item.name === itemName;
+          }
+        );
+        if (itemIndex === -1) {
+          const newItem = { name: itemName, count: 1 };
+          state.value[catIndex].items = [...state.value[catIndex].items, { newItem }];
+        } else {
+          state.value[catIndex].items[itemIndex].count += 1;
+        }
       }
     },
+    // expects string
     addCategory: (state, action) => {
-      if (!state[action.payload]) {
-        let newItem = {};
-        newItem[action.payload] = {};
-        state = { ...state, ...newItem };
+      const doesExist = current(state.value).find((category) => {
+        return category.name === action.payload;
+      });
+
+      if (!doesExist) {
+        let newItem = { items: [] };
+        newItem.name = action.payload;
+        state.value = [...state.value, newItem];
       }
     },
   },
@@ -35,17 +54,15 @@ export const listSlice = createSlice({
 
 export const { addItemToCategory, addCategory } = listSlice.actions;
 
-export const selectList = (state) => state.list;
-export const selectListCount = (state) =>
-  Object.values(state.list).reduce(
+export const selectList = (state) => state.list.value;
+export const selectListCount = (state) => {
+  return state.list.value.reduce(
     (sum, category) =>
       (sum =
         sum +
-        Object.values(category).reduce(
-          (innerSum, items) => (innerSum += items),
-          0
-        )),
+        category.items.reduce((innerSum, item) => (innerSum += item.count), 0)),
     0
   );
+};
 
 export default listSlice.reducer;
