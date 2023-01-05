@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Totalcount(props) {
+export default function TotalCount(props) {
   return (
     <div>Total Items in Cart: {props.itemCount}</div>
   )

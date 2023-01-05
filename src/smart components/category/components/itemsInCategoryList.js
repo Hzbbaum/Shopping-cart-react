@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function itemsInCategoryList() {
+export default function ItemsInCategoryList(props) {
   return (
     <div>itemsInCategoryList</div>
   )
