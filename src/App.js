@@ -16,13 +16,13 @@ function App() {
       "/api/CategoryItems"
 
     )
-      .then((hm) => {
-        console.log(hm);
-        hm.forEach((element) => {
-          dispatch(addCategory(element.name));
+      .then((categories) => {
+        categories.forEach((categoryItem) => {
+          dispatch(addCategory(categoryItem.name));
         });
       })
       .catch((e) => {
+        //this is so we can test the app even if the backend is not working
         [
           { id: 1, name: "שוקולד" },
           { id: 2, name: "מנטה" },

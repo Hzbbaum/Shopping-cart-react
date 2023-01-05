@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectList } from "../listSlice";
 import ItemsInCategoryList from "./components/itemsInCategoryList";
 
+// displays lists of catagories and their items
 export default function Category() {
   const list = useSelector(selectList);
   const categoryItems = list.map((category) => (

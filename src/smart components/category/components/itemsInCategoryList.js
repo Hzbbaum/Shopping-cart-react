@@ -1,6 +1,7 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
+// renders a list from a category item
 export default function ItemsInCategoryList(props) {
   const listItems = props.items.map((item) => (
     <ListGroupItem key={item.name}>
