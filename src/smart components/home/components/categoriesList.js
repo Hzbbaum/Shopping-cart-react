@@ -1,22 +1,35 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectList } from "../../listSlice";
-import Button from "react-bootstrap/Button";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 export default function CategoriesList(props) {
+  const [radioValue, setRadioValue] = useState('1');
   const list = useSelector(selectList);
-  const categoryButtons = list.map((category) => (
-    <Button
+
+  const categoryButtons = list.map((category, idx) => (
+    <ToggleButton
       key={category.name}
       items={category.items}
       value={category.name}
-      onClick={updateCategory}
+      id={`radio-${idx}`}
+      type="radio"
+      variant="outline-primary"
+      name="radio"
+      checked={radioValue === category.name}
+      onChange={updateCategory}
     >
       {category.name}
-    </Button>
+    </ToggleButton>
   ));
   function updateCategory(e) {
+    setRadioValue(e.currentTarget.value);
     props.changeCategoryHandler(e.target.value);
   }
-  return <React.Fragment>{categoryButtons}</React.Fragment>;
+  return (
+    <React.Fragment>
+      <ButtonGroup>{categoryButtons}</ButtonGroup>
+    </React.Fragment>
+  );
 }

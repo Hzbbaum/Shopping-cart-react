@@ -1,5 +1,6 @@
 import "./App.css";
-import Header from "./plain components/header/header";
+import Header from "./plain components/header";
+import Footer from "./plain components/footer";
 import Home from "./smart components/home/home";
 import { addCategory } from "./smart components/listSlice";
 import { useEffect } from "react";
@@ -23,9 +24,9 @@ function App() {
       })
       .catch((e) => {
         [
-          { id: 1, name: "milk" },
-          { id: 2, name: "honey" },
-          { id: 3, name: "sugar" },
+          { id: 1, name: "שוקולד" },
+          { id: 2, name: "מנטה" },
+          { id: 3, name: "מסטיק" },
         ].forEach((element) => {
           dispatch(addCategory(element.name));
         });
@@ -39,6 +40,7 @@ function App() {
         <Home />
         <Category />
       </main>
+      <Footer/>
     </div>
   );
 }

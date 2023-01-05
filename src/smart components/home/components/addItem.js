@@ -31,15 +31,26 @@ export default function AddItem() {
 
   return (
     <div>
-      <div>current category is: {chosenCategory}</div>
-      <FormControl value={itemName} onChange={handleChange}></FormControl>
-      {/* <button onClick={addCategory}>submit</button> */}
-      <Button
-        onClick={addItemToCategory}
-        disabled={chosenCategory === null || itemName === ""}
-      >
-        submit
-      </Button>
+      {/* <div>הקטגוריה הנבחרת היא: {chosenCategory}</div> */}
+      <div class="input-group mb-3">
+        <FormControl
+          type="text"
+          placeholder="שם המוצר"
+          aria-label="מוצר המוסף לרשימה"
+          onChange={handleChange}
+          value={itemName}
+        ></FormControl>
+        <Button
+          onClick={addItemToCategory}
+          disabled={chosenCategory === null || itemName === ""}
+          class="btn btn-outline-secondary"
+          type="button"
+          aria-roledescription="submit"
+
+        >
+          הוסף לעגלה
+        </Button>
+      </div>
       <CategoriesList changeCategoryHandler={setchosenCategory} />
     </div>
   );

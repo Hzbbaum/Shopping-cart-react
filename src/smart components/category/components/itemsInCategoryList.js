@@ -8,7 +8,7 @@ export default function ItemsInCategoryList(props) {
     </ListGroupItem>
   ));
   return (
-    <div className="col-4 col-md-6 col-sm-12">
+    <div className="col-lg-4 col-md-6 col-sm-12">
       <h2>{props.name}</h2>
       <ListGroup>{listItems}</ListGroup>
     </div>
