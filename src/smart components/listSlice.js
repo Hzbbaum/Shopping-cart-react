@@ -3,21 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const listSlice = createSlice({
   name: "list",
   initialState: {
-    value: {},
   },
   reducers: {
     addItemToCategory: (state, action) => {
       const {categoryName, itemName} = action.payload
-      if (state.value[categoryName]) {
-        if (state.value[categoryName][itemName]) {
-          state.value[categoryName][itemName] =
+      if (state.items[categoryName]) {
+        if (state.items[categoryName][itemName]) {
+          state.items[categoryName][itemName] =
             Number(state.value[categoryName][itemName]) + 1;
         } else {
-          state.value[categoryName][itemName] = 1;
+          state.items[categoryName][itemName] = 1;
         }
       } else {
-        state.value[categoryName] = {};
-        state.value[categoryName][itemName] = 1;
+        state.items[categoryName] = {};
+        state.items[categoryName][itemName] = 1;
       }
     },
     addCategory: (state, action) => {
@@ -30,18 +29,9 @@ export const listSlice = createSlice({
 
 export const { addItemToCategory, addCategory } = listSlice.actions;
 
-// export const getCategoriesAsync = () => (dispatch) => {
-//   fetch("https://localhost:7227/api/CategoryItems").then((hm) => {
-//     console.log(hm);
-//     hm.forEach((element) => {
-//       dispatch(addCategory(element.name));
-//     });
-//   });
-// };
-
-export const selectList = (state) => state.list.value;
+export const selectList = (state) => state.list;
 export const selectListCount = (state) =>
-  Object.values(state.list.value).reduce(
+  Object.values(state.list).reduce(
     (sum, category) =>
       (sum =
         sum +

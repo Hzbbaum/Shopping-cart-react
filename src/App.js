@@ -1,16 +1,18 @@
 import "./App.css";
 import Header from "./plain components/header/header";
 import Home from "./smart components/home/home";
-import { addCategory, selectListCount } from "./smart components/listSlice";
+import { addCategory } from "./smart components/listSlice";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import ItemsInCategoryList from "./smart components/category/components/itemsInCategoryList";
+import { useDispatch } from "react-redux";
+import Category from "./smart components/category/category";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("https://shoppingcartapi20230104113010.azurewebsites.net/api/CategoryItems")
+    fetch(
+      "https://shoppingcartapi20230104113010.azurewebsites.net/api/CategoryItems"
+    )
       .then((hm) => {
         console.log(hm);
         hm.forEach((element) => {
@@ -28,13 +30,12 @@ function App() {
       });
   });
 
-  const count = useSelector(selectListCount);
   return (
     <div className="App">
       <Header></Header>
       <main className="p-4 bg-primary-subtle">
-        <Home/>
-        <ItemsInCategoryList/>
+        <Home />
+        <Category />
       </main>
     </div>
   );
